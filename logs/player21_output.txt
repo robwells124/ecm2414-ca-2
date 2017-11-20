@@ -1,0 +1,22 @@
+player21 has drawn a 4 from bag X
+player21 has drawn a 15 from bag X
+player21 has drawn a 13 from bag Y
+player21 has drawn a 11 from bag X
+player21 has drawn a 8 from bag Z
+player21 has drawn a 12 from bag X
+player21 has drawn a 6 from bag X
+player21 has drawn a 10 from bag Y
+player21 has drawn a 12 from bag Z
+player21 has drawn a 2 from bag Z
+player21 has discarded a 4 to bag C
+player21 has drawn a 5 from bag Z
+player21 hand is 15, 13, 11, 8, 12, 6, 10, 12, 2, 5 - 94
+player21 has discarded a 15 to bag C
+player21 has drawn a 2 from bag X
+player21 hand is 13, 11, 8, 12, 6, 10, 12, 2, 5, 2 - 81
+player21 has discarded a 13 to bag A
+player21 has drawn a 5 from bag X
+player21 hand is 11, 8, 12, 6, 10, 12, 2, 5, 2, 5 - 73
+player21 has discarded a 11 to bag A
+player21 has drawn a 2 from bag X
+player21 hand is 8, 12, 6, 10, 12, 2, 5, 2, 5, 2 - 64

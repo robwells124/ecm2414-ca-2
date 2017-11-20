@@ -1,0 +1,22 @@
+player26 has drawn a 12 from bag Y
+player26 has drawn a 11 from bag Z
+player26 has drawn a 8 from bag Z
+player26 has drawn a 11 from bag Y
+player26 has drawn a 8 from bag Z
+player26 has drawn a 3 from bag Z
+player26 has drawn a 9 from bag Z
+player26 has drawn a 14 from bag X
+player26 has drawn a 3 from bag Z
+player26 has drawn a 8 from bag Z
+player26 has discarded a 12 to bag C
+player26 has drawn a 9 from bag Y
+player26 hand is 11, 8, 11, 8, 3, 9, 14, 3, 8, 9 - 84
+player26 has discarded a 11 to bag B
+player26 has drawn a 1 from bag Y
+player26 hand is 8, 11, 8, 3, 9, 14, 3, 8, 9, 1 - 74
+player26 has discarded a 8 to bag B
+player26 has drawn a 11 from bag Z
+player26 hand is 11, 8, 3, 9, 14, 3, 8, 9, 1, 11 - 77
+player26 has discarded a 11 to bag C
+player26 has drawn a 11 from bag Y
+player26 hand is 8, 3, 9, 14, 3, 8, 9, 1, 11, 11 - 77

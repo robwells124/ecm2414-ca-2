@@ -1,0 +1,16 @@
+player29 has drawn a 2 from bag Y
+player29 has drawn a 3 from bag X
+player29 has drawn a 2 from bag X
+player29 has drawn a 8 from bag Z
+player29 has drawn a 12 from bag Y
+player29 has drawn a 3 from bag X
+player29 has drawn a 10 from bag Y
+player29 has drawn a 11 from bag Y
+player29 has drawn a 4 from bag Y
+player29 has drawn a 9 from bag X
+player29 has discarded a 2 to bag A
+player29 has drawn a 13 from bag X
+player29 hand is 3, 2, 8, 12, 3, 10, 11, 4, 9, 13 - 75
+player29 has discarded a 3 to bag A
+player29 has drawn a 7 from bag X
+player29 hand is 2, 8, 12, 3, 10, 11, 4, 9, 13, 7 - 79

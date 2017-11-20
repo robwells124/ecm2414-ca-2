@@ -1,0 +1,13 @@
+player23 has drawn a 7 from bag Z
+player23 has drawn a 15 from bag Y
+player23 has drawn a 7 from bag Y
+player23 has drawn a 3 from bag Y
+player23 has drawn a 15 from bag Y
+player23 has drawn a 6 from bag Y
+player23 has drawn a 13 from bag Z
+player23 has drawn a 3 from bag Y
+player23 has drawn a 4 from bag X
+player23 has drawn a 7 from bag X
+player23 has discarded a 7 to bag A
+player23 has drawn a 13 from bag X
+player23 hand is 15, 7, 3, 15, 6, 13, 3, 4, 7, 13 - 86

@@ -1,0 +1,13 @@
+player30 has drawn a 1 from bag Y
+player30 has drawn a 10 from bag Z
+player30 has drawn a 5 from bag Y
+player30 has drawn a 3 from bag Y
+player30 has drawn a 4 from bag X
+player30 has drawn a 3 from bag X
+player30 has drawn a 10 from bag X
+player30 has drawn a 8 from bag Z
+player30 has drawn a 4 from bag Y
+player30 has drawn a 1 from bag Y
+player30 has discarded a 1 to bag B
+player30 has drawn a 10 from bag X
+player30 hand is 10, 5, 3, 4, 3, 10, 8, 4, 1, 10 - 58

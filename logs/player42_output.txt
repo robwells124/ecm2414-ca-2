@@ -1,0 +1,13 @@
+player42 has drawn a 14 from bag Y
+player42 has drawn a 10 from bag Y
+player42 has drawn a 14 from bag Z
+player42 has drawn a 14 from bag X
+player42 has drawn a 9 from bag X
+player42 has drawn a 2 from bag X
+player42 has drawn a 11 from bag Z
+player42 has drawn a 6 from bag Y
+player42 has drawn a 3 from bag X
+player42 has drawn a 11 from bag X
+player42 has discarded a 14 to bag A
+player42 has drawn a 2 from bag Z
+player42 hand is 10, 14, 14, 9, 2, 11, 6, 3, 11, 2 - 82

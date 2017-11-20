@@ -2,12 +2,10 @@
 
 package com.ca.pebblegame;
 
-import java.awt.event.KeyListener;
 import java.io.*;
 import java.util.Random;
-import java.awt.event.KeyEvent;
 
-public class PebbleGame implements KeyListener {
+public class PebbleGame {
 
     /**
      * @param args the command line arguments
@@ -29,42 +27,31 @@ public class PebbleGame implements KeyListener {
     private void runGame() {
 
         String[] bagNames = {"X", "Y", "Z","A","B","C"};
-        int numPlayers = getNumPlayers();
-        players = new Player[numPlayers];
 
-        whiteBags = new Bag[3];
-        blackBags = new Bag[3];
+        try {
+            int numPlayers = getNumPlayers();
+            players = new Player[numPlayers];
 
-        for (int i=0; i<3; i++) {
-            blackBags[i] = new Bag(bagNames[i]);
-            try {
-                blackBags[i].readWeights(numPlayers, getFileLocation(bagNames[i]));
-            } catch (Exception e) {
-                e.printStackTrace();
+            whiteBags = new Bag[3];
+            blackBags = new Bag[3];
+
+            for (int i = 0; i < 3; i++) {
+                blackBags[i] = new Bag(bagNames[i]);
+                try {
+                    blackBags[i].readWeights(numPlayers, getFileLocation(bagNames[i]));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                whiteBags[i] = new Bag(bagNames[i + 3]);
             }
-            whiteBags[i] = new Bag(bagNames[i+3]);
+
+            for (int j = 0; j < numPlayers; j++) {
+                players[j] = new Player("player" + Integer.toString(j + 1));
+                players[j].start();
+            }
+        } catch (UserQuitException uqe) {
+            System.out.println("Thank you for playing. Bye bye.");
         }
-
-        for (int j=0; j<numPlayers; j++) {
-            players[j] = new Player("player" + Integer.toString(j + 1));
-            players[j].start();
-        }
-    }
-
-    public void keyPressed(KeyEvent e) {
-//        if (e.getKeyCode() == KeyEvent.VK_E) {
-//            System.exit(0);
-//        }
-        System.out.println("Key Pressed: " + e.getKeyCode());
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        System.out.println("Key Released: " + e.getKeyCode());
-    }
-
-    public void keyTyped(KeyEvent e) {
-        System.out.println("Key Typed: " + e.getKeyCode());
     }
 
     private boolean clearLogs() {
@@ -73,19 +60,28 @@ public class PebbleGame implements KeyListener {
         return true;
     }
 
-    private int getNumPlayers() {
+    private int getNumPlayers() throws UserQuitException {
         int num;
         try {
-            num = Integer.parseInt(readInput("How many players? "));
+            String resp = readInput("How many players? ");
+            if (resp == "E" || resp == "e") {
+                throw new UserQuitException("Command to end game received.");
+            }
+            num = Integer.parseInt(resp);
         } catch (NumberFormatException ex) {
             System.out.print("Invalid input. Try again.");
             return getNumPlayers();
         }
+
         return num;
     }
 
-    private String getFileLocation(String bagName) {
-        return readInput("File location for bag " + bagName + ": ");
+    private String getFileLocation(String bagName) throws UserQuitException {
+        String resp = readInput("File location for bag " + bagName + ": ");
+        if (!(resp.equals("E") || resp.equals("e"))) {
+            return resp;
+        }
+        throw new UserQuitException("Command to end game received.");
     }
 
     private String readInput(String message) {

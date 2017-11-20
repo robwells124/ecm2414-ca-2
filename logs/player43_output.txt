@@ -1,0 +1,16 @@
+player43 has drawn a 5 from bag Z
+player43 has drawn a 6 from bag Z
+player43 has drawn a 5 from bag X
+player43 has drawn a 9 from bag Z
+player43 has drawn a 4 from bag Y
+player43 has drawn a 7 from bag Y
+player43 has drawn a 3 from bag Y
+player43 has drawn a 3 from bag Z
+player43 has drawn a 1 from bag Z
+player43 has drawn a 12 from bag X
+player43 has discarded a 5 to bag A
+player43 has drawn a 1 from bag Z
+player43 hand is 6, 5, 9, 4, 7, 3, 3, 1, 12, 1 - 51
+player43 has discarded a 6 to bag C
+player43 has drawn a 6 from bag Z
+player43 hand is 5, 9, 4, 7, 3, 3, 1, 12, 1, 6 - 51

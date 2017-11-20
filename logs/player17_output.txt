@@ -1,0 +1,13 @@
+player17 has drawn a 5 from bag X
+player17 has drawn a 8 from bag Y
+player17 has drawn a 15 from bag X
+player17 has drawn a 8 from bag Z
+player17 has drawn a 6 from bag Z
+player17 has drawn a 3 from bag X
+player17 has drawn a 12 from bag Z
+player17 has drawn a 12 from bag Z
+player17 has drawn a 8 from bag Y
+player17 has drawn a 10 from bag Y
+player17 has discarded a 5 to bag B
+player17 has drawn a 6 from bag X
+player17 hand is 8, 15, 8, 6, 3, 12, 12, 8, 10, 6 - 88

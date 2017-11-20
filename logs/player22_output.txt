@@ -1,0 +1,16 @@
+player22 has drawn a 13 from bag Y
+player22 has drawn a 7 from bag Z
+player22 has drawn a 5 from bag Z
+player22 has drawn a 12 from bag Y
+player22 has drawn a 5 from bag Y
+player22 has drawn a 8 from bag Y
+player22 has drawn a 9 from bag Z
+player22 has drawn a 4 from bag Y
+player22 has drawn a 11 from bag Z
+player22 has drawn a 8 from bag X
+player22 has discarded a 13 to bag A
+player22 has drawn a 13 from bag Z
+player22 hand is 7, 5, 12, 5, 8, 9, 4, 11, 8, 13 - 82
+player22 has discarded a 7 to bag C
+player22 has drawn a 5 from bag Z
+player22 hand is 5, 12, 5, 8, 9, 4, 11, 8, 13, 5 - 80

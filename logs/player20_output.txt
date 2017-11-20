@@ -1,0 +1,10 @@
+player20 has drawn a 11 from bag X
+player20 has drawn a 10 from bag Z
+player20 has drawn a 13 from bag Z
+player20 has drawn a 2 from bag Y
+player20 has drawn a 2 from bag Z
+player20 has drawn a 2 from bag X
+player20 has drawn a 12 from bag X
+player20 has drawn a 1 from bag X
+player20 has drawn a 14 from bag Z
+player20 has drawn a 6 from bag X

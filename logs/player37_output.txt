@@ -1,0 +1,25 @@
+player37 has drawn a 6 from bag Z
+player37 has drawn a 2 from bag Y
+player37 has drawn a 7 from bag Y
+player37 has drawn a 3 from bag Z
+player37 has drawn a 15 from bag Z
+player37 has drawn a 8 from bag Z
+player37 has drawn a 12 from bag Z
+player37 has drawn a 4 from bag Y
+player37 has drawn a 14 from bag Z
+player37 has drawn a 2 from bag Z
+player37 has discarded a 6 to bag C
+player37 has drawn a 2 from bag Y
+player37 hand is 2, 7, 3, 15, 8, 12, 4, 14, 2, 2 - 69
+player37 has discarded a 2 to bag B
+player37 has drawn a 2 from bag X
+player37 hand is 7, 3, 15, 8, 12, 4, 14, 2, 2, 2 - 69
+player37 has discarded a 7 to bag A
+player37 has drawn a 11 from bag X
+player37 hand is 3, 15, 8, 12, 4, 14, 2, 2, 2, 11 - 73
+player37 has discarded a 3 to bag A
+player37 has drawn a 2 from bag Z
+player37 hand is 15, 8, 12, 4, 14, 2, 2, 2, 11, 2 - 72
+player37 has discarded a 15 to bag C
+player37 has drawn a 15 from bag Y
+player37 hand is 8, 12, 4, 14, 2, 2, 2, 11, 2, 15 - 72

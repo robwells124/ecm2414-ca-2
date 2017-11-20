@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- *
  * @author Robert Wells
  */
 public class Bag {
@@ -34,7 +33,7 @@ public class Bag {
         String line = "";
         try {
             br = new BufferedReader(new FileReader(fileLocation));
-            for (int i=0; i<11*players; i++) {
+            for (int i = 0; i < 11 * players; i++) {
                 if ((line = br.readLine()) != null) {
                     int pebble = Integer.parseInt(line);
                     if (pebble > 0) {
@@ -79,10 +78,10 @@ public class Bag {
     /*
      * Method doubles the capacity of the array
      */
-    private void resizeArray(){
-        int[] tempArray = new int[this.pebbles.length*2];
+    private void resizeArray() {
+        int[] tempArray = new int[this.pebbles.length * 2];
         // Efficiently copy all the elements of array into tempArray
-        System.arraycopy(this.pebbles,0,tempArray,0,this.pebbles.length);
+        System.arraycopy(this.pebbles, 0, tempArray, 0, this.pebbles.length);
         this.pebbles = tempArray;
     }
 
@@ -114,7 +113,7 @@ public class Bag {
     private void contract(int index) {
         // Efficiently copy all the elements of array beyond index down one
         // space, effectively removing the index element
-        System.arraycopy(this.pebbles,index+1,this.pebbles,index,this.elementsUsed-(index+1));
+        System.arraycopy(this.pebbles, index + 1, this.pebbles, index, this.elementsUsed - (index + 1));
         this.elementsUsed--;
     }
 
@@ -125,7 +124,6 @@ public class Bag {
      *
      * @param index index of element in list to be returned
      * @return Object at corresponding index
-     *
      */
     public int remove(int index) {
         if (this.isInvalid(index))
@@ -142,14 +140,14 @@ public class Bag {
      */
     public int[] contents() {
         int[] temp = new int[this.elementsUsed];
-        for (int i=0; i<this.elementsUsed; i++)
+        for (int i = 0; i < this.elementsUsed; i++)
             temp[i] = this.pebbles[i];
         return temp;
     }
 
     public String[] contentsAsString() {
         String[] temp = new String[this.elementsUsed];
-        for (int i=0; i<this.elementsUsed; i++)
+        for (int i = 0; i < this.elementsUsed; i++)
             temp[i] = Integer.toString(this.pebbles[i]);
         return temp;
     }

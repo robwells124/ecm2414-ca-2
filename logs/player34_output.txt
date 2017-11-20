@@ -1,0 +1,13 @@
+player34 has drawn a 3 from bag Z
+player34 has drawn a 12 from bag Y
+player34 has drawn a 14 from bag Z
+player34 has drawn a 15 from bag X
+player34 has drawn a 3 from bag X
+player34 has drawn a 5 from bag Y
+player34 has drawn a 3 from bag Z
+player34 has drawn a 15 from bag Z
+player34 has drawn a 10 from bag Y
+player34 has drawn a 15 from bag Y
+player34 has discarded a 3 to bag B
+player34 has drawn a 5 from bag Y
+player34 hand is 12, 14, 15, 3, 5, 3, 15, 10, 15, 5 - 97

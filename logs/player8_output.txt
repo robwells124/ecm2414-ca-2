@@ -1,0 +1,10 @@
+player8 has drawn a 10 from bag Y
+player8 has drawn a 2 from bag X
+player8 has drawn a 2 from bag Z
+player8 has drawn a 6 from bag Z
+player8 has drawn a 12 from bag Z
+player8 has drawn a 1 from bag Y
+player8 has drawn a 4 from bag X
+player8 has drawn a 10 from bag X
+player8 has drawn a 4 from bag Y
+player8 has drawn a 6 from bag Y

@@ -1,0 +1,13 @@
+player10 has drawn a 9 from bag X
+player10 has drawn a 6 from bag X
+player10 has drawn a 7 from bag Y
+player10 has drawn a 8 from bag Z
+player10 has drawn a 9 from bag Y
+player10 has drawn a 15 from bag Y
+player10 has drawn a 9 from bag Y
+player10 has drawn a 6 from bag X
+player10 has drawn a 6 from bag Z
+player10 has drawn a 4 from bag X
+player10 has discarded a 9 to bag A
+player10 has drawn a 3 from bag Z
+player10 hand is 6, 7, 8, 9, 15, 9, 6, 6, 4, 3 - 73

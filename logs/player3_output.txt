@@ -1,0 +1,22 @@
+player3 has drawn a 1 from bag Y
+player3 has drawn a 12 from bag Z
+player3 has drawn a 13 from bag X
+player3 has drawn a 8 from bag Y
+player3 has drawn a 10 from bag Y
+player3 has drawn a 4 from bag Z
+player3 has drawn a 11 from bag X
+player3 has drawn a 6 from bag Z
+player3 has drawn a 5 from bag Y
+player3 has drawn a 14 from bag Y
+player3 has discarded a 1 to bag B
+player3 has drawn a 13 from bag Y
+player3 hand is 12, 13, 8, 10, 4, 11, 6, 5, 14, 13 - 96
+player3 has discarded a 12 to bag B
+player3 has drawn a 2 from bag X
+player3 hand is 13, 8, 10, 4, 11, 6, 5, 14, 13, 2 - 86
+player3 has discarded a 13 to bag A
+player3 has drawn a 7 from bag Z
+player3 hand is 8, 10, 4, 11, 6, 5, 14, 13, 2, 7 - 80
+player3 has discarded a 8 to bag C
+player3 has drawn a 9 from bag Z
+player3 hand is 10, 4, 11, 6, 5, 14, 13, 2, 7, 9 - 81
