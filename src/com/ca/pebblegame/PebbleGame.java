@@ -1,0 +1,209 @@
+// C:\Users\mitch\Google Drive\University\2nd Year\ECM2414 - Software Development\Coursework - Copy\ecm2414-ca\bag1.csv
+
+package com.ca.pebblegame;
+
+import java.awt.event.KeyListener;
+import java.io.*;
+import java.util.Random;
+import java.awt.event.KeyEvent;
+
+public class PebbleGame implements KeyListener {
+
+    /**
+     * @param args the command line arguments
+     */
+
+    Bag[] whiteBags;
+    Bag[] blackBags;
+
+    Player[] players;
+
+    public static void main(String[] args) {
+        PebbleGame pebbleGame = new PebbleGame();
+        if (pebbleGame.clearLogs()) {
+            pebbleGame.runGame();
+        } else {
+            System.out.println("Log cleaning error: Aborting simulation.");
+        }
+    }
+    private void runGame() {
+
+        String[] bagNames = {"X", "Y", "Z","A","B","C"};
+        int numPlayers = getNumPlayers();
+        players = new Player[numPlayers];
+
+        whiteBags = new Bag[3];
+        blackBags = new Bag[3];
+
+        for (int i=0; i<3; i++) {
+            blackBags[i] = new Bag(bagNames[i]);
+            try {
+                blackBags[i].readWeights(numPlayers, getFileLocation(bagNames[i]));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            whiteBags[i] = new Bag(bagNames[i+3]);
+        }
+
+        for (int j=0; j<numPlayers; j++) {
+            players[j] = new Player("player" + Integer.toString(j + 1));
+            players[j].start();
+        }
+    }
+
+    public void keyPressed(KeyEvent e) {
+//        if (e.getKeyCode() == KeyEvent.VK_E) {
+//            System.exit(0);
+//        }
+        System.out.println("Key Pressed: " + e.getKeyCode());
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        System.out.println("Key Released: " + e.getKeyCode());
+    }
+
+    public void keyTyped(KeyEvent e) {
+        System.out.println("Key Typed: " + e.getKeyCode());
+    }
+
+    private boolean clearLogs() {
+        File[] files = new File("logs").listFiles();
+        if (files != null) for (File f : files) f.delete();
+        return true;
+    }
+
+    private int getNumPlayers() {
+        int num;
+        try {
+            num = Integer.parseInt(readInput("How many players? "));
+        } catch (NumberFormatException ex) {
+            System.out.print("Invalid input. Try again.");
+            return getNumPlayers();
+        }
+        return num;
+    }
+
+    private String getFileLocation(String bagName) {
+        return readInput("File location for bag " + bagName + ": ");
+    }
+
+    private String readInput(String message) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print(message);
+        String response;
+        try {
+            response = reader.readLine();
+        } catch (IOException ex) {
+            return "";
+        }
+
+        return response;
+    }
+
+    private void endGame(Thread winner) {
+        for (Thread player: players) {
+            if (player != winner) {
+                player.interrupt();
+            }
+        }
+    }
+
+    private void dump(int bagPair) {
+        this.blackBags[bagPair].fill(
+                this.whiteBags[bagPair].drop()
+        );
+    }
+
+    public class Player extends Thread {
+        private Random rnd = new Random();
+        private int[] pebbles = new int[10];
+        private int currentBag;
+        private Bag hand;
+
+        Player(String name) {
+            super(name);
+            hand = new Bag();
+        }
+
+        @Override
+        public void run() {
+            boolean won = false;
+
+            while (hand.contents().length < 10) {
+                draw();
+            }
+
+            while (!Thread.currentThread().isInterrupted()) {
+                won = checkHand();
+                if (!won) {
+                    discard();
+                    draw();
+                    log(Thread.currentThread().getName() + " hand is " + String.join(", ", hand.contentsAsString()) + " - " + Integer.toString(sumHand()));
+                } else {
+                    System.out.println(Thread.currentThread().getName() + " has won the game.");
+                    PebbleGame.this.endGame(this);
+                    break;
+                }
+            }
+            if (won && Thread.currentThread().isInterrupted()) {
+                System.out.println(Thread.currentThread().getName() + " has drawn.");
+            }
+        }
+
+        public boolean checkHand() {
+            int total = sumHand();
+            return total == 100;
+        }
+
+        private int sumHand() {
+            int total = 0;
+
+            for (int i : hand.contents())
+                total += i;
+            return total;
+        }
+
+        private int getNewBag() {
+            return rnd.nextInt(3);
+        }
+
+        private void log(String message) {
+            try {
+                PrintWriter printer = new PrintWriter(new FileWriter("logs/" + Thread.currentThread().getName() + "_output.txt", true));
+                printer.printf("%s" + "%n", message);
+                printer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        private int discard() {
+            int oldPebble = hand.remove(0);
+            if (oldPebble == -1) {
+                System.out.println("Cheese");
+            }
+            PebbleGame.this.whiteBags[currentBag].add(oldPebble);
+            log(Thread.currentThread().getName() + " has discarded a " + Integer.toString(oldPebble) + " to bag " + whiteBags[currentBag].getName());
+            return oldPebble;
+        }
+
+        private int draw() {
+            currentBag = getNewBag();
+            int newPebble = 0;
+            if (PebbleGame.this.blackBags[currentBag].contents().length > 0) {
+                newPebble = PebbleGame.this.blackBags[currentBag].remove(0);
+            } else {
+                if (PebbleGame.this.whiteBags[currentBag].contents().length > 0) {
+                    PebbleGame.this.dump(currentBag);
+                    newPebble = PebbleGame.this.blackBags[currentBag].remove(0);
+                } else {
+                    newPebble = draw();
+                }
+            }
+            hand.add(newPebble);
+            log(Thread.currentThread().getName() + " has drawn a " + Integer.toString(newPebble) + " from bag " + blackBags[currentBag].getName());
+            return newPebble;
+        }
+    }
+}
