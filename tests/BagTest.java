@@ -121,7 +121,7 @@ public class BagTest {
         }
 
         for (int i=0; i<contents.length; i++) {
-            if (contents[i] != expected[i]) {
+            if (!contents[i].equals(expected[i])) {
                 equal = false;
             }
         }
@@ -139,11 +139,9 @@ public class BagTest {
     }
     @Test(expected = PebbleWeightException.class)
     public void fillTestStringFail() throws Exception {
-        int[] test_pebbles = new int[] {1,2,3,4,5,6,7,8,9};
+        int[] test_pebbles = new int[] {-1,2,3,4,5,6,7,8,9};
 
         testBag.fill(test_pebbles);
-
-        assertEquals(testBag.contents().length, test_pebbles.length);
     }
 
     @Test

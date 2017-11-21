@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.PrintStream;
 
 import static org.junit.Assert.*;
@@ -72,7 +73,8 @@ public class PlayerTest {
     @Test
     public void sumHandTest() {
         setUp();
-        assertTrue(testPlayer.sumHand() == 0);
+        testPlayer.setHand(new int[] {1,1,1,1,1,1,1,1,1,1});
+        assertEquals(testPlayer.sumHand(), 10);
     }
     @Test
     public void sumHandTestEmpty() {
@@ -81,19 +83,9 @@ public class PlayerTest {
     }
 
     @Test
-    public void getNewBagTest() {
-
-    }
-
-    @Test
     public void logTest() {
-
+        testPlayer.log("This is a test.");
+        assert(new File("logs/main_output.txt").exists());
     }
-
-    @Test
-    public void discardTest() {}
-
-    @Test
-    public void drawTest() {}
 
 }
