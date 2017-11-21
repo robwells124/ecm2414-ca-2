@@ -11,11 +11,14 @@ import java.io.*;
 
 import static org.junit.Assert.*;
 
+/**
+ * Test class for the PebbleGame object.
+ */
 public class PebbleGameTest {
 
     private final ByteArrayOutputStream os = new ByteArrayOutputStream();
     private PebbleGame game = new PebbleGame();
-    Player test_Player;
+    private Player test_Player;
 
     @Before
     public void setUp() {
@@ -26,6 +29,10 @@ public class PebbleGameTest {
     public void tearDown() throws Exception {
     }
 
+    /**
+     * Test PebbleGame.runGame
+     * @throws Exception
+     */
     @Test
     public void runGameTest() throws Exception {
         setUp();
@@ -34,6 +41,10 @@ public class PebbleGameTest {
         assertTrue(resp.contains("Let the game begin!"));
     }
 
+    /**
+     * Test PebbleGame.readInput
+     * @throws Exception
+     */
     @Test
     public void readInputTest() {
         ByteArrayInputStream in = new ByteArrayInputStream("Test".getBytes());
@@ -42,6 +53,10 @@ public class PebbleGameTest {
         assertEquals(response, "Test");
     }
 
+    /**
+     * Test PebbleGame.getNumPlayers
+     * @throws Exception
+     */
     @Test
     public void getNumPlayersTest() throws Exception {
         ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
@@ -49,12 +64,20 @@ public class PebbleGameTest {
         int response = game.getNumPlayers();
         assertEquals(response, 1);
     }
+    /**
+     * Test PebbleGame.getNumPlayers - Bad input test
+     * @throws NullPointerException
+     */
     @Test(expected = NullPointerException.class)
     public void getNumPlayersTestStringFail() throws Exception {
         ByteArrayInputStream in = new ByteArrayInputStream("Fail\n1".getBytes());
         System.setIn(in);
         game.getNumPlayers();
     }
+    /**
+     * Test PebbleGame.getNumPlayers - User quit simulation
+     * @throws Exception
+     */
     @Test(expected = UserQuitException.class)
     public void getNumPlayersTestQuit() throws Exception {
         ByteArrayInputStream in = new ByteArrayInputStream("E".getBytes());
@@ -62,6 +85,10 @@ public class PebbleGameTest {
         game.getNumPlayers();
     }
 
+    /**
+     * Test PebbleGame.getFileLocation
+     * @throws Exception
+     */
     @Test
     public void getFileLocationTest() throws Exception {
         ByteArrayInputStream in = new ByteArrayInputStream("test".getBytes());
@@ -69,6 +96,10 @@ public class PebbleGameTest {
         String response = game.getFileLocation("Test");
         assertEquals(response, "test");
     }
+    /**
+     * Test PebbleGame.getFileLocation - User quit simulation
+     * @throws UserQuitException
+     */
     @Test(expected = UserQuitException.class)
     public void getFileLocationQuit() throws Exception {
         ByteArrayInputStream in = new ByteArrayInputStream("E".getBytes());
@@ -76,6 +107,9 @@ public class PebbleGameTest {
         game.getFileLocation("Test");
     }
 
+    /**
+     * Test PebbleGame.clearLog
+     */
     @Test
     public void clearLogTest() {
         try {
@@ -89,6 +123,9 @@ public class PebbleGameTest {
         assertTrue(new File("logs").listFiles().length == 0);
     }
 
+    /**
+     * Test PebbleGame.endGame
+     */
     @Test
     public void endGameTest() {
         setUp();
@@ -115,6 +152,9 @@ public class PebbleGameTest {
         assertTrue(test_Player.isInterrupted());
     }
 
+    /**
+     * Test PebbleGame.dump
+     */
     @Test
     public void dumpTest() {
         Bag[] whiteBags = new Bag[3];
@@ -136,6 +176,9 @@ public class PebbleGameTest {
 
         game.dump(0);
     }
+    /**
+     * Test PebbleGame.dump - Index past boundary test.
+     */
     @Test(expected = IndexOutOfBoundsException.class)
     public void dumpTestFail() {
         Bag[] whiteBags = new Bag[3];
@@ -158,6 +201,9 @@ public class PebbleGameTest {
         game.dump(-1);
     }
 
+    /**
+     * Test PebbleGame.setBags
+     */
     @Test
     public void setBagsTest() {
         Bag[] whiteBags = new Bag[3];
@@ -171,6 +217,9 @@ public class PebbleGameTest {
         assertTrue(game.setBags(blackBags, whiteBags));
     }
 
+    /**
+     * Test PebbleGame.setHand
+     */
     @Test
     public void setHandTest() {
         setUp();
@@ -194,10 +243,18 @@ public class PebbleGameTest {
         assertTrue(equal);
     }
 
+    /**
+     * Test PebbleWeightException
+     * @throws PebbleWeightException
+     */
     @Test(expected = PebbleWeightException.class)
     public void pebbleWeightExceptionTest() throws PebbleWeightException {
         throw new PebbleWeightException("Test");
     }
+    /**
+     * Test UserQuitException
+     * @throws UserQuitException
+     */
     @Test(expected = UserQuitException.class)
     public void userQuitExceptionTest() throws UserQuitException {
         throw new UserQuitException("Test");

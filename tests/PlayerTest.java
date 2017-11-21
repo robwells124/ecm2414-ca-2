@@ -10,6 +10,9 @@ import java.io.PrintStream;
 
 import static org.junit.Assert.*;
 
+/**
+ * Test class for the PebbleGame.Player object.
+ */
 public class PlayerTest {
 
     private final ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -44,6 +47,9 @@ public class PlayerTest {
     public void tearDown() throws Exception {
     }
 
+    /**
+     * Test PebbleGame.Player.run
+     */
     @Test
     public void runTest() {
         setUp();
@@ -52,17 +58,26 @@ public class PlayerTest {
         assertTrue(resp.contains("won"));
     }
 
+    /**
+     * Test PebbleGame.Player.checkHand
+     */
     @Test
     public void checkHandTest() {
         setUp();
         testPlayer.setHand(new int[] {10,10,10,10,10,10,10,10,10,10});
         assertTrue(testPlayer.checkHand());
     }
+    /**
+     * Test PebbleGame.Player.checkHand - Hand is empty when function is called.
+     */
     @Test
     public void checkHandTestEmptyHand() {
         setUp();
         assertFalse(testPlayer.checkHand());
     }
+    /**
+     * Test PebbleGame.Player.checkHand - Total hand weight is not 100.
+     */
     @Test
     public void checkHandTestFail() {
         setUp();
@@ -70,18 +85,27 @@ public class PlayerTest {
         assertFalse(testPlayer.checkHand());
     }
 
+    /**
+     * Test PebbleGame.Player.sumHand
+     */
     @Test
     public void sumHandTest() {
         setUp();
         testPlayer.setHand(new int[] {1,1,1,1,1,1,1,1,1,1});
         assertEquals(testPlayer.sumHand(), 10);
     }
+    /**
+     * Test PebbleGame.Player.sumHand - Hand is empty when function is called.
+     */
     @Test
     public void sumHandTestEmpty() {
         setUp();
         assertTrue(testPlayer.sumHand() == 0);
     }
 
+    /**
+     * Test PebbleGame.Player.log
+     */
     @Test
     public void logTest() {
         testPlayer.log("This is a test.");

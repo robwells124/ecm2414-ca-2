@@ -7,26 +7,46 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * @author Robert Wells
+ * This class is the bag object used by the PebbleGame class.
+ * Used as the black and white bags, and the Player objects hand.
+ *
+ * @version 1.0
+ * @author 660021130
+ * @author 650031807
  */
 public class Bag {
     private int[] pebbles;
     private int elementsUsed;
     private String name;
 
-
+    /**
+     * Constructor method for the bag object.
+     * Instantiates the class variables.
+     */
     public Bag() {
         this.pebbles = new int[10];
         this.elementsUsed = 0;
         this.name = "Not defined.";
     }
 
+    /**
+     * Overloading constructor method for the bag object.
+     * Instantiates the class variables.
+     * @param name Name assigned to the bag object for reference when logging.
+     */
     public Bag(String name) {
         this.pebbles = new int[10];
         this.elementsUsed = 0;
         this.name = name;
     }
 
+    /**
+     * Function takes the number of players in the simulation and the file location to read the pebble weights into.
+     * @param players Number of players in the simulation.
+     * @param fileLocation File location as a string.
+     * @throws FileNotFoundException Thrown when the given file location cannot be found.
+     * @throws PebbleWeightException Thrown when the pebble weights passed in the file are invalid.
+     */
     public void readWeights(int players, String fileLocation) throws FileNotFoundException, PebbleWeightException {
         // Read from the file
         BufferedReader br = null;
@@ -58,16 +78,25 @@ public class Bag {
         }
     }
 
+    /**
+     * Return the name assigned to the bag.
+     * @return String name assigned to the bag.
+     */
     public String getName() {
         return this.name;
     }
+
+    /**
+     * Return the current number of pebbles in the bag.
+     * @return Current amount as int.
+     */
     public int getElementsUsed() {return this.elementsUsed; }
 
     /**
      * Method adds the argument to the end of the list. <code>null</code> reference
      * elements are not supported, so ensure that you do not add them.
      *
-     * @param i Object instance to be added
+     * @param i int to be added to the bag.
      */
     public synchronized void add(int i) {
         if (this.elementsUsed == this.pebbles.length)
@@ -78,6 +107,7 @@ public class Bag {
 
     /*
      * Method doubles the capacity of the array
+     * Synchronized atomic action.
      */
     private synchronized void resizeArray() {
         int[] tempArray = new int[this.pebbles.length * 2];
@@ -90,8 +120,8 @@ public class Bag {
      * Method returns the element of the list at the index provided, will
      * return <code>-1</code> if the index is invalid
      *
-     * @param index index of element in list to be returned
-     * @return Object at corresponding index
+     * @param index index of element in list to be returned.
+     * @return pebble weight at corresponding index.
      */
     public int get(int index) {
         if (this.isInvalid(index))
@@ -105,7 +135,6 @@ public class Bag {
     private boolean isInvalid(int index) {
         return ((index < 0) || (index >= this.elementsUsed));
     }
-
 
     /*
      * Method contracts effectively removing the index item. If item beyond range of
@@ -122,9 +151,10 @@ public class Bag {
      * Method removes the element of the list at the index provided, will
      * return <code>-1</code> if the index is invalid. Otherwise will
      * return the instance removed
+     * Synchronized atomic action.
      *
      * @param index index of element in list to be returned
-     * @return Object at corresponding index
+     * @return pebble weight at corresponding index
      */
     public synchronized int remove(int index) {
         if (this.isInvalid(index))
@@ -137,7 +167,7 @@ public class Bag {
     /**
      * Method returns the contents of this Bag as an array
      *
-     * @return shallow copy of contents of list as an array
+     * @return shallow copy of contents of bag as an array
      */
     public int[] contents() {
         int[] temp = new int[this.elementsUsed];
@@ -146,6 +176,10 @@ public class Bag {
         return temp;
     }
 
+    /**
+     * Method returns the contents of the Bag as a String array
+     * @return String cop of the contents of the bag.
+     */
     public String[] contentsAsString() {
         String[] temp = new String[this.elementsUsed];
         for (int i = 0; i < this.elementsUsed; i++)
@@ -153,7 +187,11 @@ public class Bag {
         return temp;
     }
 
-
+    /**
+     * Replace current pebbles with those passed via the parameter.
+     * @param pebbles int array of the new pebble weights.
+     * @throws PebbleWeightException Thrown when an invalid pebble weight is passed into the function.
+     */
     public synchronized void fill(int[] pebbles) throws PebbleWeightException {
         for (int pebble : pebbles) {
             if (pebble < 1) {
@@ -164,6 +202,10 @@ public class Bag {
         this.elementsUsed = pebbles.length;
     }
 
+    /**
+     * Remove all pebbles from the bag by copying and then reinstanciating the pebbles int array.
+     * @return Returns the former bag content.
+     */
     public synchronized int[] drop() {
         int[] temp = this.contents();
         this.pebbles = new int[10];
