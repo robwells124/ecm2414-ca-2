@@ -43,7 +43,7 @@ public class PebbleGame {
      * @param numPlayers Number of players to simulate.
      * @param bagLocations Array of three file locations to generate the bags from.
      */
-    public void runGame(int numPlayers, String[] bagLocations) {
+    public void runGame(int numPlayers, String[] bagLocations) throws UserQuitException {
 
         String[] bagNames = {"X", "Y", "Z","A","B","C"};
 
@@ -56,8 +56,15 @@ public class PebbleGame {
             blackBags[i] = new Bag(bagNames[i]);
             try {
                 blackBags[i].readWeights(numPlayers, bagLocations[i]);
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                System.out.println("Invalid file location. Relocate your files and try again.");
+                throw new UserQuitException("Game ended. File error.");
+            } catch (PebbleWeightException e) {
+                System.out.println("Invalid pebble weights found in file. Please check your files and try again.");
+                throw new UserQuitException("Game ended. Pebble weight error.");
+            } catch (IOException e) {
+                System.out.println("Critical IO failure. - Game terminating.");
+                throw new UserQuitException("Game ended. IO Failure.");
             }
             whiteBags[i] = new Bag(bagNames[i + 3]);
         }

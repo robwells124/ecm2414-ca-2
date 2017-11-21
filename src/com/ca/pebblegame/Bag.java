@@ -46,35 +46,25 @@ public class Bag {
      * @param fileLocation File location as a string.
      * @throws FileNotFoundException Thrown when the given file location cannot be found.
      * @throws PebbleWeightException Thrown when the pebble weights passed in the file are invalid.
+     * @throws IOException Thrown when IO faults occur.
      */
-    public void readWeights(int players, String fileLocation) throws FileNotFoundException, PebbleWeightException {
+    public void readWeights(int players, String fileLocation) throws FileNotFoundException, PebbleWeightException, IOException {
         // Read from the file
         BufferedReader br = null;
         String line = "";
-        try {
-            br = new BufferedReader(new FileReader(fileLocation));
-            for (int i = 0; i < 11 * players; i++) {
-                if ((line = br.readLine()) != null) {
-                    int pebble = Integer.parseInt(line);
-                    if (pebble > 0) {
-                        add(pebble);
-                    } else {
-                        throw new PebbleWeightException("Pebble cannot have negative weight.");
-                    }
+        br = new BufferedReader(new FileReader(fileLocation));
+        for (int i = 0; i < 11 * players; i++) {
+            if ((line = br.readLine()) != null) {
+                int pebble = Integer.parseInt(line);
+                if (pebble > 0) {
+                    add(pebble);
+                } else {
+                    throw new PebbleWeightException("Pebble cannot have negative weight.");
                 }
             }
-        } catch (IOException e) {
-            // Make this meaningful.
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    // Make this meaningful.
-                    e.printStackTrace();
-                }
-            }
+        }
+        if (br != null) {
+            br.close();
         }
     }
 
