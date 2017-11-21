@@ -61,6 +61,7 @@ public class Bag {
     public String getName() {
         return this.name;
     }
+    public int getElementsUsed() {return this.elementsUsed; }
 
     /**
      * Method adds the argument to the end of the list. <code>null</code> reference
@@ -153,7 +154,12 @@ public class Bag {
     }
 
 
-    public synchronized void fill(int[] pebbles) {
+    public synchronized void fill(int[] pebbles) throws PebbleWeightException {
+        for (int pebble : pebbles) {
+            if (pebble < 1) {
+                throw new PebbleWeightException("Negative pebble weights are not valid.");
+            }
+        }
         this.pebbles = pebbles;
         this.elementsUsed = pebbles.length;
     }

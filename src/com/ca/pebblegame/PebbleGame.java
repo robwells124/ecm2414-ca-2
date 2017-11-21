@@ -19,40 +19,46 @@ public class PebbleGame {
     public static void main(String[] args) {
         PebbleGame pebbleGame = new PebbleGame();
         if (pebbleGame.clearLogs()) {
-            pebbleGame.runGame();
+            try {
+                int numPlayers = pebbleGame.getNumPlayers();
+                String bagXLoc = pebbleGame.getFileLocation("X");
+                String bagYLoc = pebbleGame.getFileLocation("Y");
+                String bagZLoc = pebbleGame.getFileLocation("Z");
+
+                pebbleGame.runGame(numPlayers, new String[] {bagXLoc, bagYLoc, bagZLoc});
+            } catch (UserQuitException uqe) {
+                System.out.println("Thank you for playing. Bye bye.");
+            }
         } else {
             System.out.println("Log cleaning error: Aborting simulation.");
         }
     }
 
-    private void runGame() {
+    public void runGame(int numPlayers, String[] bagLocations) {
 
         String[] bagNames = {"X", "Y", "Z","A","B","C"};
 
-        try {
-            int numPlayers = getNumPlayers();
-            players = new Player[numPlayers];
+        players = new Player[numPlayers];
 
-            whiteBags = new Bag[3];
-            blackBags = new Bag[3];
+        whiteBags = new Bag[3];
+        blackBags = new Bag[3];
 
-            for (int i = 0; i < 3; i++) {
-                blackBags[i] = new Bag(bagNames[i]);
-                try {
-                    blackBags[i].readWeights(numPlayers, getFileLocation(bagNames[i]));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                whiteBags[i] = new Bag(bagNames[i + 3]);
+        for (int i = 0; i < 3; i++) {
+            blackBags[i] = new Bag(bagNames[i]);
+            try {
+                blackBags[i].readWeights(numPlayers, bagLocations[i]);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-            for (int j = 0; j < numPlayers; j++) {
-                players[j] = new Player("player" + Integer.toString(j + 1));
-                players[j].start();
-            }
-        } catch (UserQuitException uqe) {
-            System.out.println("Thank you for playing. Bye bye.");
+            whiteBags[i] = new Bag(bagNames[i + 3]);
         }
+
+        for (int j = 0; j < numPlayers; j++) {
+            players[j] = new Player("player" + Integer.toString(j + 1));
+            players[j].start();
+        }
+
+        System.out.println("Let the game begin!");
     }
 
     public boolean clearLogs() {
@@ -112,17 +118,22 @@ public class PebbleGame {
 
     public void dump(int bagPair) {
         if (bagPair >= 0 && bagPair <= 2) {
-            this.blackBags[bagPair].fill(
-                    this.whiteBags[bagPair].drop()
-            );
+            try {
+                this.blackBags[bagPair].fill(
+                        this.whiteBags[bagPair].drop()
+                );
+            } catch (PebbleWeightException e) {
+                e.printStackTrace();
+            }
         } else {
             throw new IndexOutOfBoundsException("Invalid bagPair entered.");
         }
     }
 
-    public void setBags(Bag[] blackBags, Bag[] whiteBags) {
+    public Boolean setBags(Bag[] blackBags, Bag[] whiteBags) {
         this.blackBags = blackBags;
         this.whiteBags = whiteBags;
+        return true;
     }
 
     public class Player extends Thread {
@@ -165,7 +176,7 @@ public class PebbleGame {
             return total == 100;
         }
 
-        private int sumHand() {
+        public int sumHand() {
             int total = 0;
 
             for (int i : hand.contents())
@@ -173,11 +184,22 @@ public class PebbleGame {
             return total;
         }
 
-        private int getNewBag() {
+        public int[] getHand() {
+            return hand.contents();
+        }
+        public void setHand(int[] newHand) {
+            try {
+                hand.fill(newHand);
+            } catch (PebbleWeightException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public int getNewBag() {
             return rnd.nextInt(3);
         }
 
-        private void log(String message) {
+        public void log(String message) {
             try {
                 PrintWriter printer = new PrintWriter(new FileWriter("logs/" + Thread.currentThread().getName() + "_output.txt", true));
                 printer.printf("%s" + "%n", message);
@@ -187,7 +209,7 @@ public class PebbleGame {
             }
         }
 
-        private int discard() {
+        public int discard() {
             int oldPebble = hand.remove(0);
             if (oldPebble == -1) {
                 System.out.println("Cheese");
@@ -197,7 +219,7 @@ public class PebbleGame {
             return oldPebble;
         }
 
-        private int draw() {
+        public int draw() {
             currentBag = getNewBag();
             int newPebble = 0;
             if (PebbleGame.this.blackBags[currentBag].contents().length > 0) {

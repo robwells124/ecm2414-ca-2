@@ -25,6 +25,14 @@ public class PebbleGameTest {
     }
 
     @Test
+    public void runGameTest() throws Exception {
+        setUp();
+        game.runGame(1, new String[] {"test_bag.csv", "test_bag.csv", "test_bag.csv"});
+        String resp = os.toString();
+        assertTrue(resp.contains("Let the game begin!"));
+    }
+
+    @Test
     public void readInputTest() {
         ByteArrayInputStream in = new ByteArrayInputStream("Test".getBytes());
         System.setIn(in);
@@ -129,6 +137,19 @@ public class PebbleGameTest {
         game.setBags(blackBags, whiteBags);
 
         game.dump(-1);
+    }
+
+    @Test
+    public void setBagsTest() {
+        Bag[] whiteBags = new Bag[3];
+        Bag[] blackBags = new Bag[3];
+
+        for (int i = 0; i < 3; i++) {
+            whiteBags[i] = new Bag();
+            blackBags[i] = new Bag();
+        }
+
+        assertTrue(game.setBags(blackBags, whiteBags));
     }
 
 }
