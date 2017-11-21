@@ -68,7 +68,7 @@ public class Bag {
      *
      * @param i Object instance to be added
      */
-    public void add(int i) {
+    public synchronized void add(int i) {
         if (this.elementsUsed == this.pebbles.length)
             this.resizeArray();
         this.pebbles[elementsUsed] = i;
@@ -78,7 +78,7 @@ public class Bag {
     /*
      * Method doubles the capacity of the array
      */
-    private void resizeArray() {
+    private synchronized void resizeArray() {
         int[] tempArray = new int[this.pebbles.length * 2];
         // Efficiently copy all the elements of array into tempArray
         System.arraycopy(this.pebbles, 0, tempArray, 0, this.pebbles.length);
@@ -125,7 +125,7 @@ public class Bag {
      * @param index index of element in list to be returned
      * @return Object at corresponding index
      */
-    public int remove(int index) {
+    public synchronized int remove(int index) {
         if (this.isInvalid(index))
             return -1;
         int value = this.get(index);
@@ -153,12 +153,12 @@ public class Bag {
     }
 
 
-    public void fill(int[] pebbles) {
+    public synchronized void fill(int[] pebbles) {
         this.pebbles = pebbles;
         this.elementsUsed = pebbles.length;
     }
 
-    public int[] drop() {
+    public synchronized int[] drop() {
         int[] temp = this.contents();
         this.pebbles = new int[10];
         this.elementsUsed = 0;

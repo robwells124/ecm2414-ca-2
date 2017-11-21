@@ -14,7 +14,7 @@ public class PebbleGame {
     Bag[] whiteBags;
     Bag[] blackBags;
 
-    Player[] players;
+    public Player[] players;
 
     public static void main(String[] args) {
         PebbleGame pebbleGame = new PebbleGame();
@@ -24,6 +24,7 @@ public class PebbleGame {
             System.out.println("Log cleaning error: Aborting simulation.");
         }
     }
+
     private void runGame() {
 
         String[] bagNames = {"X", "Y", "Z","A","B","C"};
@@ -54,20 +55,24 @@ public class PebbleGame {
         }
     }
 
-    private boolean clearLogs() {
+    public boolean clearLogs() {
         File[] files = new File("logs").listFiles();
         if (files != null) for (File f : files) f.delete();
         return true;
     }
 
-    private int getNumPlayers() throws UserQuitException {
+    public int getNumPlayers() throws UserQuitException {
         int num;
         try {
             String resp = readInput("How many players? ");
-            if (resp == "E" || resp == "e") {
+            if ((resp.equals("E")) || (resp.equals("e"))) {
                 throw new UserQuitException("Command to end game received.");
             }
             num = Integer.parseInt(resp);
+            if (num < 0) {
+                System.out.print("Must be a positive number of players. Try again.");
+                return getNumPlayers();
+            }
         } catch (NumberFormatException ex) {
             System.out.print("Invalid input. Try again.");
             return getNumPlayers();
@@ -76,7 +81,7 @@ public class PebbleGame {
         return num;
     }
 
-    private String getFileLocation(String bagName) throws UserQuitException {
+    public String getFileLocation(String bagName) throws UserQuitException {
         String resp = readInput("File location for bag " + bagName + ": ");
         if (!(resp.equals("E") || resp.equals("e"))) {
             return resp;
@@ -84,7 +89,7 @@ public class PebbleGame {
         throw new UserQuitException("Command to end game received.");
     }
 
-    private String readInput(String message) {
+    public String readInput(String message) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.print(message);
         String response;
@@ -97,7 +102,7 @@ public class PebbleGame {
         return response;
     }
 
-    private void endGame(Thread winner) {
+    public void endGame(Thread winner) {
         for (Thread player: players) {
             if (player != winner) {
                 player.interrupt();
@@ -105,19 +110,27 @@ public class PebbleGame {
         }
     }
 
-    private void dump(int bagPair) {
-        this.blackBags[bagPair].fill(
-                this.whiteBags[bagPair].drop()
-        );
+    public void dump(int bagPair) {
+        if (bagPair >= 0 && bagPair <= 2) {
+            this.blackBags[bagPair].fill(
+                    this.whiteBags[bagPair].drop()
+            );
+        } else {
+            throw new IndexOutOfBoundsException("Invalid bagPair entered.");
+        }
+    }
+
+    public void setBags(Bag[] blackBags, Bag[] whiteBags) {
+        this.blackBags = blackBags;
+        this.whiteBags = whiteBags;
     }
 
     public class Player extends Thread {
         private Random rnd = new Random();
-        private int[] pebbles = new int[10];
         private int currentBag;
         private Bag hand;
 
-        Player(String name) {
+        public Player(String name) {
             super(name);
             hand = new Bag();
         }
