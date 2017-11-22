@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="pebbles">
-    <output-path>$PROJECT_DIR$/out/artifacts/pebbles</output-path>
-    <root id="archive" name="pebbles.jar">
-      <element id="module-output" name="ecm2414-ca-2" />
-    </root>
-  </artifact>
-</component>
